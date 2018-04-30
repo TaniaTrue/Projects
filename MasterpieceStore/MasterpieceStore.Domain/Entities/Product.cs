@@ -11,7 +11,7 @@ namespace MasterpieceStore.Domain.Entities
         public int ProductID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal MinPrice { get; set; }
-        public int Created { get; set; }
+        public decimal? MinPrice { get; set; }
+        public short? Created { get; set; }
     }
 }
