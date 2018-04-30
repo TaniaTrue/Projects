@@ -1,4 +1,6 @@
-﻿using Ninject;
+﻿using MasterpieceStore.Domain.Abstract;
+using MasterpieceStore.Domain.Concrete;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace MasterpieceStore.WebUI.Infrastructure
         }
         private void AddBindings()
         {
-            // put bindings here
+            kernel.Bind<IProductRepository>().To<EFProductRepository>();
         }
     }
 }
