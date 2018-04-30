@@ -164,7 +164,14 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MasterpieceStore.Domain\MasterpieceStore.Domain.csproj">
+      <Project>{4737820b-b059-43b8-95d5-009ebd4ee4f8}</Project>
+      <Name>MasterpieceStore.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
