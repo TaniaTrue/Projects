@@ -240,3 +240,18 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/ConsoleApplication2/
+/ControllersAndActions/
+/EventsAndDelegatesMosh/
+/HelperMethod/
+/FtpExample/
+/LilGallery/
+/Makarena/
+/WorkingWithRazor/
+/WebApplication3/
+/Views/
+/Vidly/
+/MyStore/
+/MyLilGallery/
+/MyBlob/
+/MvcModels/
