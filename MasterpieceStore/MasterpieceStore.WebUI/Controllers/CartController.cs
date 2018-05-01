@@ -17,6 +17,11 @@ namespace MasterpieceStore.WebUI.Controllers
             repository = repo;
         }
 
+        public PartialViewResult Summary(Cart cart)
+        {
+            return PartialView(cart);
+        }
+
         public ViewResult Index(Cart cart,string returnUrl)
         {
             return View(new CartIndexViewModel
