@@ -13,5 +13,6 @@ namespace MasterpieceStore.Domain.Entities
         public string Description { get; set; }
         public decimal? MinPrice { get; set; }
         public short? Created { get; set; }
+        //public string Genre { get; set; }
     }
 }
