@@ -22,7 +22,7 @@ namespace MasterpieceStore.WebUI.Controllers
             return PartialView(cart);
         }
 
-        public ViewResult Index(Cart cart,string returnUrl)
+        public ViewResult Index(Cart cart, string returnUrl)
         {
             return View(new CartIndexViewModel
             {
@@ -52,6 +52,10 @@ namespace MasterpieceStore.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        public ViewResult Checkout()
+        {
+            return View(new ShippingDetails());
 
+        }
     }
 }
