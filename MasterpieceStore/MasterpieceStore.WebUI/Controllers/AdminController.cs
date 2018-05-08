@@ -45,5 +45,17 @@ namespace MasterpieceStore.WebUI.Controllers
         {
             return View("Edit", new Product());
         }
+
+        [HttpPost]
+        public ActionResult Delete(int producrtID)
+        {
+            Product deletedProduct = repository.DeleteProduct(producrtID);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted",
+ deletedProduct.Name);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
