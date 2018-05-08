@@ -12,9 +12,12 @@ namespace MasterpieceStore.WebUI.Controllers
     public class CartController : Controller
     {
         private IProductRepository repository;
-        public CartController(IProductRepository repo)
+        private IOrderProcessor orderProcessor;
+
+        public CartController(IProductRepository repo, IOrderProcessor orderProc)
         {
             repository = repo;
+            orderProcessor = orderProc;
         }
 
         public PartialViewResult Summary(Cart cart)
@@ -56,6 +59,25 @@ namespace MasterpieceStore.WebUI.Controllers
         {
             return View(new ShippingDetails());
 
+        }
+
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+        {
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Sorry, your cart is empty!");
+            }
+            if (ModelState.IsValid)
+            {
+                orderProcessor.ProcessOrder(cart, shippingDetails);
+                cart.Clear();
+                return View("Completed");
+            }
+            else
+            {
+                return View(shippingDetails);
+            }
         }
     }
 }
