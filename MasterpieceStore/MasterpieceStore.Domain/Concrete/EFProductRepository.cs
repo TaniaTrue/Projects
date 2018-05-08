@@ -30,9 +30,9 @@ namespace MasterpieceStore.Domain.Concrete
                     dbEntry.Name = product.Name;
                     dbEntry.Description = product.Description;
                     dbEntry.MinPrice = product.MinPrice;
-                }
-                context.SaveChanges();
+                }             
             }
+            context.SaveChanges();
         }
     }
 }
