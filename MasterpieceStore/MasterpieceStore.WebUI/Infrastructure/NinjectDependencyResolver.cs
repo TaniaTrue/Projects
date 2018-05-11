@@ -7,6 +7,8 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MasterpieceStore.WebUI.Infrastructure.Abstract;
+using MasterpieceStore.WebUI.Infrastructure.Concrete;
 
 namespace MasterpieceStore.WebUI.Infrastructure
 {
@@ -37,6 +39,8 @@ namespace MasterpieceStore.WebUI.Infrastructure
             };
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
             .WithConstructorArgument("settings", emailSettings);
+
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
 
     }
