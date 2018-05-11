@@ -211,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Infrastructure\Abstract\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MasterpieceStore.Domain\MasterpieceStore.Domain.csproj">
