@@ -41,6 +41,8 @@ namespace MasterpieceStore.Domain.Concrete
                     dbEntry.Name = product.Name;
                     dbEntry.Description = product.Description;
                     dbEntry.MinPrice = product.MinPrice;
+                    dbEntry.ImageData = product.ImageData;
+                    dbEntry.ImageMimeType = product.ImageMimeType;
                 }             
             }
             context.SaveChanges();
