@@ -25,6 +25,9 @@ namespace MasterpieceStore.Domain.Entities
         public decimal? MinPrice { get; set; }
         public short? Created { get; set; }
 
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
+
         //public string Genre { get; set; }
     }
 }
