@@ -47,9 +47,9 @@ namespace MasterpieceStore.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int producrtID)
+        public ActionResult Delete(int productID)
         {
-            Product deletedProduct = repository.DeleteProduct(producrtID);
+            Product deletedProduct = repository.DeleteProduct(productID);
             if (deletedProduct != null)
             {
                 TempData["message"] = string.Format("{0} was deleted",
