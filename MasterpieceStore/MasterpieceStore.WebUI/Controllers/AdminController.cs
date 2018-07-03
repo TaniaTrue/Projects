@@ -1,5 +1,7 @@
 ﻿using MasterpieceStore.Domain.Abstract;
+using MasterpieceStore.Domain.Concrete;
 using MasterpieceStore.Domain.Entities;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +65,18 @@ namespace MasterpieceStore.WebUI.Controllers
  deletedProduct.Name);
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult GetUsers()
+        {
+            return View(UserManager.Users);
+        }
+        private AppUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
         }
     }
 }
