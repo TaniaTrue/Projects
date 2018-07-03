@@ -36,10 +36,10 @@ namespace MasterpieceStore.WebUI.Controllers
                     return View();
                 }
             }
-            else
-            {
-                return View();
-            }
+            //else
+            //{
+            //    return View();
+            //}
             return View();
         }
     }
