@@ -1,10 +1,13 @@
 ﻿using MasterpieceStore.Domain.Abstract;
 using MasterpieceStore.Domain.Concrete;
 using MasterpieceStore.Domain.Entities;
+using MasterpieceStore.WebUI.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -76,6 +79,39 @@ namespace MasterpieceStore.WebUI.Controllers
             get
             {
                 return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+
+        public ActionResult CreateUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateUser(CreateModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = new AppUser { UserName = model.Name, Email = model.Email };
+                IdentityResult result = await UserManager.CreateAsync(user,
+                model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("GetUsers");
+                }
+                else
+                {
+                    AddErrorsFromResult(result);
+                }
+            }
+            return View(model);
+        }
+
+        private void AddErrorsFromResult(IdentityResult result)
+        {
+            foreach (string error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
             }
         }
     }
