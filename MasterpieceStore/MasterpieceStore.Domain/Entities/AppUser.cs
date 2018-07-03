@@ -10,5 +10,6 @@ namespace MasterpieceStore.Domain.Entities
 {
    public class AppUser: IdentityUser
     {
+
     }
 }
