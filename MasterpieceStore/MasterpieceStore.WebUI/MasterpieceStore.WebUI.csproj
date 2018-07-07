@@ -190,6 +190,7 @@
     <Content Include="Content\ErrorStyles.css" />
     <Content Include="Content\mybootstrap.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\SupaStyling.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -263,6 +264,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MasterpieceStore.Domain\MasterpieceStore.Domain.csproj">
