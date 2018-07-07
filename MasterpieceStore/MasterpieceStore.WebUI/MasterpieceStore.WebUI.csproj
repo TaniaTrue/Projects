@@ -188,6 +188,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ErrorStyles.css" />
+    <Content Include="Content\img\theme.jpg" />
     <Content Include="Content\mybootstrap.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\SupaStyling.css" />
@@ -255,6 +256,7 @@
     <Content Include="Views\Account\GetUsers.cshtml" />
     <Content Include="Views\Account\CreateUser.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_ThemeImg.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -264,7 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MasterpieceStore.Domain\MasterpieceStore.Domain.csproj">
