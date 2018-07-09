@@ -10,6 +10,8 @@ using MasterpieceStore.Domain.Entities;
 using Microsoft.AspNet.Identity;
 using MasterpieceStore.Domain.Concrete;
 using Microsoft.AspNet.Identity.Owin;
+using System.Security.Claims;
+using Microsoft.Owin.Security;
 
 namespace MasterpieceStore.WebUI.Controllers
 {
@@ -21,31 +23,49 @@ namespace MasterpieceStore.WebUI.Controllers
             authProvider = auth;
         }
 
-        public ViewResult Login()
-        {
-            return View();
-        }
-        
-        [HttpPost]
-        public ActionResult Login(LoginViewModel model, string returnUrl)
+        [AllowAnonymous]
+        public ViewResult Login(string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                if (authProvider.Authenticate(model.UserName, model.Password))
+                ViewBag.returnUrl = returnUrl;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await UserManager.FindAsync(model.UserName, model.Password);
+                if (user == null)
                 {
-                    return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
+                    ModelState.AddModelError("", "Invalid name or password.");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Incorrect username or password");
-                    return View();
+                    ClaimsIdentity ident = await UserManager.CreateIdentityAsync(user,
+                    DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthManager.SignOut();
+                    AuthManager.SignIn(new AuthenticationProperties
+                    {
+                        IsPersistent = false
+                    }, ident);
+                    return Redirect(returnUrl);
                 }
             }
-            //else
-            //{
-            //    return View();
-            //}
-            return View();
+            return View(model);
+        }
+
+        private IAuthenticationManager AuthManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
         }
 
         public ActionResult GetUsers()
@@ -102,7 +122,7 @@ namespace MasterpieceStore.WebUI.Controllers
                 IdentityResult result = await UserManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("GetUsers");
                 }
                 else
                 {
@@ -113,6 +133,68 @@ namespace MasterpieceStore.WebUI.Controllers
             {
                 return View("Error", new string[] { "User Not Found" });
             }
+        }
+
+        public async Task<ActionResult> Edit(string id)
+        {
+            AppUser user = await UserManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("GetUsers");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(string id, string email, string password)
+        {
+            AppUser user = await UserManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                user.Email = email;
+                IdentityResult validEmail
+                = await UserManager.UserValidator.ValidateAsync(user);
+                if (!validEmail.Succeeded)
+                {
+                    AddErrorsFromResult(validEmail);
+                }
+                IdentityResult validPass = null;
+                if (password != string.Empty)
+                {
+                    validPass
+                    = await UserManager.PasswordValidator.ValidateAsync(password);
+                    if (validPass.Succeeded)
+                    {
+                        user.PasswordHash =
+                        UserManager.PasswordHasher.HashPassword(password);
+                    }
+                    else
+                    {
+                        AddErrorsFromResult(validPass);
+                    }
+                }
+                if ((validEmail.Succeeded && validPass == null) || (validEmail.Succeeded
+ && password != string.Empty && validPass.Succeeded))
+                {
+                    IdentityResult result = await UserManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("GetUsers");
+                    }
+                    else
+                    {
+                        AddErrorsFromResult(result);
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "User Not Found");
+            }
+            return View(user);
         }
     }
 }

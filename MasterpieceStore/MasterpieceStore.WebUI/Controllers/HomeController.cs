@@ -9,9 +9,15 @@ namespace MasterpieceStore.WebUI.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        [Authorize]
         public ActionResult Index()
         {
-            return View();
+            Dictionary<string, object> data
+  = new Dictionary<string, object>();
+            data.Add("Placeholder", "Placeholder");
+            return View(data);
         }
+
+
     }
 }
