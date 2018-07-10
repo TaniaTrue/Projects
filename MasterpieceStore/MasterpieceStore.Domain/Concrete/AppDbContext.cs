@@ -24,7 +24,7 @@ namespace MasterpieceStore.Domain.Concrete
         }
     }
 
-    public class IdentityDbInit : DropCreateDatabaseAlways<AppDbContext>
+    public class IdentityDbInit : DropCreateDatabaseIfModelChanges<AppDbContext>
     {
         protected override void Seed(AppDbContext context)
         {
