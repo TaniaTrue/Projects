@@ -15,6 +15,7 @@ using Microsoft.Owin.Security;
 
 namespace MasterpieceStore.WebUI.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         IAuthProvider authProvider;
@@ -26,6 +27,10 @@ namespace MasterpieceStore.WebUI.Controllers
         [AllowAnonymous]
         public ViewResult Login(string returnUrl)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return View("Error", new string[] { "Access Denied" });
+            }
             if (ModelState.IsValid)
             {
                 ViewBag.returnUrl = returnUrl;
@@ -195,6 +200,13 @@ namespace MasterpieceStore.WebUI.Controllers
                 ModelState.AddModelError("", "User Not Found");
             }
             return View(user);
+        }
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            AuthManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
