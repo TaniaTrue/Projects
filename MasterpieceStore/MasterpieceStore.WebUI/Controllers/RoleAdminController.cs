@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace MasterpieceStore.WebUI.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class RoleAdminController : Controller
     {
         public ActionResult Index()

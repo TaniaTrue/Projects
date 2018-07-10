@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace MasterpieceStore.WebUI.Controllers
 {
-   
+    [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
         private IProductRepository repository;
