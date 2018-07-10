@@ -11,7 +11,8 @@ namespace MasterpieceStore.Domain.Concrete
 {
    public class AppDbContext : IdentityDbContext<AppUser>
     {
-        public AppDbContext() : base("EFDbContext") { }
+        public DbSet<Product> Products { get; set; }
+        public AppDbContext() : base("AppDbContext") { }
 
         static AppDbContext()
         {
@@ -23,7 +24,7 @@ namespace MasterpieceStore.Domain.Concrete
         }
     }
 
-    public class IdentityDbInit : DropCreateDatabaseIfModelChanges<AppDbContext>
+    public class IdentityDbInit : DropCreateDatabaseAlways<AppDbContext>
     {
         protected override void Seed(AppDbContext context)
         {

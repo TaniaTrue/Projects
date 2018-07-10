@@ -10,7 +10,7 @@ namespace MasterpieceStore.Domain.Concrete
 {
     public class EFProductRepository : IProductRepository
     {
-        private EFDbContext context = new EFDbContext();
+        private AppDbContext context = new AppDbContext();
         public IEnumerable<Product> Products
         {
             get { return context.Products; }

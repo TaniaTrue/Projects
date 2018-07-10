@@ -22,7 +22,7 @@ namespace MasterpieceStore.Domain.Concrete
         IOwinContext context)
         {
             return new AppRoleManager(new
-            RoleStore<AppRole>(context.Get<AppIdentityDbContext>()));
+            RoleStore<AppRole>(context.Get<AppDbContext>()));
         }
     }
 }
