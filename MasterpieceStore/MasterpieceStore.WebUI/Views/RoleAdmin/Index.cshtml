@@ -2,7 +2,9 @@
 @using MasterpieceStore.WebUI.HtmlHelpers
 @model IEnumerable<AppRole>
 
-@{ ViewBag.Title = "Roles"; }
+@{ ViewBag.Title = "Roles";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
 <div class="panel panel-primary">
     <div class="panel-heading">Roles</div>
     <table class="table table-striped">

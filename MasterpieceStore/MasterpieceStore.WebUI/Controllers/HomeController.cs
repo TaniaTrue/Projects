@@ -9,7 +9,7 @@ namespace MasterpieceStore.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(GetData("Index"));
