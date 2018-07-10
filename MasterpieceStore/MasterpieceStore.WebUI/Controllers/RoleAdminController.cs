@@ -4,8 +4,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;using MasterpieceStore.Domain.Entities;
+using Microsoft.AspNet.Identity.Owin;
+using MasterpieceStore.Domain.Entities;
 using MasterpieceStore.Domain.Concrete;
+using MasterpieceStore.WebUI.Models;
+using System.Collections.Generic;
 
 namespace MasterpieceStore.WebUI.Controllers
 {
@@ -78,6 +81,48 @@ namespace MasterpieceStore.WebUI.Controllers
             {
                 return HttpContext.GetOwinContext().GetUserManager<AppRoleManager>();
             }
+        }
+
+        public async Task<ActionResult> Edit(string id)
+        {
+            AppRole role = await RoleManager.FindByIdAsync(id);
+            string[] memberIDs = role.Users.Select(x => x.UserId).ToArray();
+            IEnumerable<AppUser> members = UserManager.Users.Where(x => memberIDs.Any(y => y == x.Id));
+            IEnumerable<AppUser> nonmembers = UserManager.Users.Except(members);
+            return View(new RoleEditModel
+            {
+                Role = role,
+                Members = members,
+                NonMembers = nonmembers
+            });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(RoleModificationModel model)
+        {
+            IdentityResult result;
+            if (ModelState.IsValid)
+            {
+                foreach (string userId in model.IdsToAdd ?? new string[] { })
+                {
+                    result = await UserManager.AddToRoleAsync(userId, model.RoleName);
+                    if (!result.Succeeded)
+                    {
+                        return View("Error", result.Errors);
+                    }
+                }
+                foreach (string userId in model.IdsToDelete ?? new string[] { })
+                {
+                    result = await UserManager.RemoveFromRoleAsync(userId,
+                    model.RoleName);
+                    if (!result.Succeeded)
+                    {
+                        return View("Error", result.Errors);
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            return View("Error", new string[] { "Role Not Found" });
         }
     }
 }
