@@ -18,7 +18,7 @@ namespace MasterpieceStore.Domain.Concrete
         }
         public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options, IOwinContext context)
         {
-            AppIdentityDbContext db = context.Get<AppIdentityDbContext>();
+            AppDbContext db = context.Get<AppDbContext>();
             AppUserManager manager = new AppUserManager(new UserStore<AppUser>(db));
             return manager;
         }

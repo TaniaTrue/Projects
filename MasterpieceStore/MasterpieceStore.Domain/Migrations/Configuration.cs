@@ -5,15 +5,15 @@ namespace MasterpieceStore.Domain.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MasterpieceStore.Domain.Concrete.AppIdentityDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MasterpieceStore.Domain.Concrete.AppDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "MasterpieceStore.Domain.Concrete.AppIdentityDbContext";
+            ContextKey = "MasterpieceStore.Domain.Concrete.AppDbContext";
         }
 
-        protected override void Seed(MasterpieceStore.Domain.Concrete.AppIdentityDbContext context)
+        protected override void Seed(MasterpieceStore.Domain.Concrete.AppDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
