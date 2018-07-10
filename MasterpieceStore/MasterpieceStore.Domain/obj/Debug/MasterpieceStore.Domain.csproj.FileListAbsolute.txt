@@ -40,3 +40,6 @@ D:\WORK\Projects\MasterpieceStore\MasterpieceStore.Domain\bin\Debug\Microsoft.Ow
 D:\WORK\Projects\MasterpieceStore\MasterpieceStore.Domain\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 D:\WORK\Projects\MasterpieceStore\MasterpieceStore.Domain\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 D:\WORK\Projects\MasterpieceStore\MasterpieceStore.Domain\bin\Debug\Newtonsoft.Json.xml
+D:\WORK\Projects\MasterpieceStore\MasterpieceStore.Domain\obj\Debug\MasterpieceStore.Domain.Migrations.InitialCreate.resources
+D:\WORK\Projects\MasterpieceStore\MasterpieceStore.Domain\obj\Debug\MasterpieceStore.Domain.csproj.GenerateResource.Cache
+D:\WORK\Projects\MasterpieceStore\MasterpieceStore.Domain\obj\Debug\MasterpieceStore.Domain.Migrations.First.resources
