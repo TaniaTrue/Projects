@@ -25,19 +25,21 @@
         </ul>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                @if (User.Identity.IsAuthenticated)
+                @*@if (User.Identity.IsAuthenticated)
                 {
                     <li>
                         <a>  @Html.ActionLink("Sign Out", "Logout", "Account", null, new { @class = "btn btn-primary" })</a>
                     </li>
                 }else
                 {
-                <li><a href="@Url.Action("Login", "Account", new { returnUrl = Request.Url.PathAndQuery })"><i class="far fa-user-circle" style="font-size: 22px"></i>Login</a></li>
-                }
+                <li><a href="@Url.Action("Login", "Account", new { returnUrl = Request.Url.PathAndQuery })"><i class="far fa-user-circle" style="font-size: 22px"></i>Log In</a></li>
+              
+                }*@
 
                 <li><a href="@Url.Action("Index", "Cart", new { returnUrl = Request.Url.PathAndQuery })"><i class="fas fa-shopping-bag" style="font-size: 20px"></i></a></li>
             </ul>
         </div>
+        <a> @Html.ActionLink("Register", "Register", "Account") REGISTER </a>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

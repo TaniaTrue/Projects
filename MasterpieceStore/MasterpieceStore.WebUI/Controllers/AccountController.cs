@@ -15,15 +15,17 @@ using Microsoft.Owin.Security;
 
 namespace MasterpieceStore.WebUI.Controllers
 {
-    [Authorize]
+
     public class AccountController : Controller
     {
+      
         IAuthProvider authProvider;
         public AccountController(IAuthProvider auth)
         {
             authProvider = auth;
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public ViewResult Login(string returnUrl)
         {
@@ -65,33 +67,22 @@ namespace MasterpieceStore.WebUI.Controllers
             return View(model);
         }
 
-        private IAuthenticationManager AuthManager
+        [Authorize]
+        public ActionResult Logout()
         {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
+            AuthManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult GetUsers()
-        {
-            return View(UserManager.Users);
-        }
-        private AppUserManager UserManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            }
-        }
 
-        public ActionResult CreateUser()
+        public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateUser(CreateModel model)
+        [AllowAnonymous]
+        public async Task<ActionResult> Register(RegistrationViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +91,7 @@ namespace MasterpieceStore.WebUI.Controllers
                 model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("GetUsers");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -110,103 +101,29 @@ namespace MasterpieceStore.WebUI.Controllers
             return View(model);
         }
 
-        private void AddErrorsFromResult(IdentityResult result)
+    private void AddErrorsFromResult(IdentityResult result)
         {
             foreach (string error in result.Errors)
             {
                 ModelState.AddModelError("", error);
             }
         }
-
-        [HttpPost]
-        public async Task<ActionResult> Delete(string id)
+        private IAuthenticationManager AuthManager
         {
-            AppUser user = await UserManager.FindByIdAsync(id);
-            if (user != null)
+            get
             {
-                IdentityResult result = await UserManager.DeleteAsync(user);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("GetUsers");
-                }
-                else
-                {
-                    return View("Error", result.Errors);
-                }
-            }
-            else
-            {
-                return View("Error", new string[] { "User Not Found" });
+                return HttpContext.GetOwinContext().Authentication;
             }
         }
 
-        public async Task<ActionResult> Edit(string id)
-        {
-            AppUser user = await UserManager.FindByIdAsync(id);
-            if (user != null)
-            {
-                return View(user);
-            }
-            else
-            {
-                return RedirectToAction("GetUsers");
-            }
-        }
 
-        [HttpPost]
-        public async Task<ActionResult> Edit(string id, string email, string password)
-        {
-            AppUser user = await UserManager.FindByIdAsync(id);
-            if (user != null)
-            {
-                user.Email = email;
-                IdentityResult validEmail
-                = await UserManager.UserValidator.ValidateAsync(user);
-                if (!validEmail.Succeeded)
-                {
-                    AddErrorsFromResult(validEmail);
-                }
-                IdentityResult validPass = null;
-                if (password != string.Empty)
-                {
-                    validPass
-                    = await UserManager.PasswordValidator.ValidateAsync(password);
-                    if (validPass.Succeeded)
-                    {
-                        user.PasswordHash =
-                        UserManager.PasswordHasher.HashPassword(password);
-                    }
-                    else
-                    {
-                        AddErrorsFromResult(validPass);
-                    }
-                }
-                if ((validEmail.Succeeded && validPass == null) || (validEmail.Succeeded
- && password != string.Empty && validPass.Succeeded))
-                {
-                    IdentityResult result = await UserManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("GetUsers");
-                    }
-                    else
-                    {
-                        AddErrorsFromResult(result);
-                    }
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", "User Not Found");
-            }
-            return View(user);
-        }
 
-        [Authorize]
-        public ActionResult Logout()
+        private AppUserManager UserManager//повторяющийся код
         {
-            AuthManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
         }
     }
 }
