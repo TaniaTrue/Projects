@@ -16,8 +16,8 @@ namespace MasterpieceStore.WebUI.Controllers
     [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
-        private IRepository repository;
-        public AdminController(IRepository repo)
+        private IProductRepository repository;
+        public AdminController(IProductRepository repo)
         {
             repository = repo;
         }

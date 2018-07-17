@@ -17,7 +17,7 @@ namespace MasterpieceStore.UnitTest
         public void Index_Contains_All_Products()
         {
             // Arrange - create the mock repository
-            Mock<IRepository> mock = new Mock<IRepository>();
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new Product[] {
                 new Product {ProductID = 1, Name = "P1"},
  new Product {ProductID = 2, Name = "P2"},
@@ -40,7 +40,7 @@ namespace MasterpieceStore.UnitTest
         public void Can_Edit_Product()
         {
             // Arrange - create the mock repository
-            Mock<IRepository> mock = new Mock<IRepository>();
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new Product[] {
  new Product {ProductID = 1, Name = "P1"},
  new Product {ProductID = 2, Name = "P2"},
@@ -62,7 +62,7 @@ namespace MasterpieceStore.UnitTest
         public void Cannot_Edit_Nonexistent_Product()
         {
             // Arrange - create the mock repository
-            Mock<IRepository> mock = new Mock<IRepository>();
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new Product[] {
  new Product {ProductID = 1, Name = "P1"},
  new Product {ProductID = 2, Name = "P2"},
@@ -81,7 +81,7 @@ namespace MasterpieceStore.UnitTest
         {
 
             // Arrange - create mock repository
-            Mock<IRepository> mock = new Mock<IRepository>();
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             // Arrange - create the controller
             AdminController target = new AdminController(mock.Object);
             // Arrange - create a product
@@ -98,7 +98,7 @@ namespace MasterpieceStore.UnitTest
         public void Cannot_Save_Invalid_Changes()
         {
             // Arrange - create mock repository
-            Mock<IRepository> mock = new Mock<IRepository>();
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             // Arrange - create the controller
             AdminController target = new AdminController(mock.Object);
             // Arrange - create a product
@@ -118,7 +118,7 @@ namespace MasterpieceStore.UnitTest
             // Arrange - create a Product
             Product prod = new Product { ProductID = 2, Name = "Test" };
             // Arrange - create the mock repository
-            Mock<IRepository> mock = new Mock<IRepository>();
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new Product[] {
  new Product {ProductID = 1, Name = "P1"},
  prod,

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MasterpieceStore.Domain.Concrete
 {
-    public class EFRepository : IRepository
+    public class EFProductRepository : IProductRepository
     {
         private AppDbContext context = new AppDbContext();
         public IEnumerable<Product> Products

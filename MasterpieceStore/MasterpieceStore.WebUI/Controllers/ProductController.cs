@@ -13,8 +13,8 @@ namespace MasterpieceStore.WebUI.Controllers
     public class ProductController : Controller
     {
         public int PageSize = 4;
-        private IRepository repository;
-        public ProductController(IRepository productRepository)
+        private IProductRepository repository;
+        public ProductController(IProductRepository productRepository)
         {
             this.repository = productRepository;
         }

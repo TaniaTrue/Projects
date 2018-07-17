@@ -19,7 +19,7 @@ namespace MasterpieceStore.UnitTest
         public void Can_Paginate()
         {
             // Arrange
-            Mock<IRepository> mock = new Mock<IRepository>();
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new Product[] {
  new Product {ProductID = 1, Name = "P1"},
  new Product {ProductID = 2, Name = "P2"},
@@ -66,7 +66,7 @@ namespace MasterpieceStore.UnitTest
         public void Can_Send_Pagination_View_Model()
         {
             // Arrange
-            Mock<IRepository> mock = new Mock<IRepository>();
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns(new Product[] {
  new Product {ProductID = 1, Name = "P1"},
  new Product {ProductID = 2, Name = "P2"},

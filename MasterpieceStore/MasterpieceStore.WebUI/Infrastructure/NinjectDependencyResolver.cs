@@ -30,7 +30,7 @@ namespace MasterpieceStore.WebUI.Infrastructure
         }
         private void AddBindings()
         {
-            kernel.Bind<IRepository>().To<EFRepository>();
+            kernel.Bind<IProductRepository>().To<EFProductRepository>();
 
             EmailSettings emailSettings = new EmailSettings
             {

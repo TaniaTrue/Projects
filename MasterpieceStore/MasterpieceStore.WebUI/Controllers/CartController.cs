@@ -11,10 +11,10 @@ namespace MasterpieceStore.WebUI.Controllers
 {
     public class CartController : Controller
     {
-        private IRepository repository;
+        private IProductRepository repository;
         private IOrderProcessor orderProcessor;
 
-        public CartController(IRepository repo, IOrderProcessor orderProc)
+        public CartController(IProductRepository repo, IOrderProcessor orderProc)
         {
             repository = repo;
             orderProcessor = orderProc;
