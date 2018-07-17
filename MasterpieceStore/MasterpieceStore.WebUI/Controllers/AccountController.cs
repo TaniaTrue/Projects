@@ -91,7 +91,7 @@ namespace MasterpieceStore.WebUI.Controllers
                 model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

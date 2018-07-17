@@ -44,16 +44,22 @@ audio:not([controls]) {
 template {
   display: none;
 }
+
+.fullhover {
+padding-bottom: 20px;
+}
 a {
     background-color: transparent;
     -o-transition: all 0.3s;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
+    padding-bottom: 20px;
 }
 a:active,
 a:hover {
   outline: 0;
+  padding-bottom: 20px;
 }
 abbr[title] {
   border-bottom: 1px dotted;
@@ -3375,8 +3381,19 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   border: 1px solid transparent;
+   margin-bottom: 0;
+	  background-color: #000000;
+	  z-index: 9999;
+	  border: 0;
+	  font-size: 14px !important;
+	  line-height: 1.42857143 !important;
+	  letter-spacing: 4px;
+	  border-radius: 0;
+	  font-family: Montserrat, sans-serif;
+  }
+ 
 }
 @media (min-width: 768px) {
   .navbar {
@@ -5699,7 +5716,7 @@ button.close {
 .modal-header:after,
 .modal-footer:before,
 .modal-footer:after {
-  display: table;
+  
   content: " ";
 }
 .clearfix:after,
@@ -5776,3 +5793,30 @@ button.close {
 .visible-lg-inline-block {
   display: none !important;
 }
+
+.ul > .li > .a {
+padding-bottom: 20px !important;
+}
+
+ .navbar {
+	  margin-bottom: 0;
+	  background-color: #000000;
+	  z-index: 9999;
+	  border: 0;
+	  font-size: 14px !important;
+	  line-height: 1.42857143 !important;
+	  letter-spacing: 4px;
+	  border-radius: 0;
+	  font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+	  color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+	  color: #f4511e !important;
+	  background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+	  border-color: transparent;
+	  color: #fff !important;
+  }
