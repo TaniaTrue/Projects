@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MasterpieceStore.Domain.Abstract
 {
-  public interface IProductRepository
+  public interface IRepository
     {
         IEnumerable<Product> Products { get; }
         void SaveProduct(Product product);
