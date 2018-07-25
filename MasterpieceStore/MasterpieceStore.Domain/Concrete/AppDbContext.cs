@@ -13,6 +13,7 @@ namespace MasterpieceStore.Domain.Concrete
    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Author> Authors { get; set; }
         public AppDbContext() : base("AppDbContext") { }
 
         static AppDbContext()
