@@ -9,6 +9,7 @@ namespace MasterpieceStore.Domain.Entities
     public class Cart
     {
         private List<CartLine> lineCollection = new List<CartLine>();
+
         public void AddItem(Product product, int quantity)
         {
             CartLine line = lineCollection
@@ -33,7 +34,8 @@ namespace MasterpieceStore.Domain.Entities
         }
         public decimal ComputeTotalValue()
         {
-            return 0;// CHANGE
+            // return lineCollection.Sum(e=>e.Product.MinPrice * e.Quantity);// CHANGE
+            return 0;
         }
         public void Clear()
         {
@@ -44,7 +46,7 @@ namespace MasterpieceStore.Domain.Entities
             get { return lineCollection; }
         }
     }
-    public class CartLine
+    public class CartLine //представляет товар выбранный пользователем и приобретаемое его кол-во
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }

@@ -188,6 +188,32 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ErrorStyles.css" />
+    <Content Include="Content\ForGallery\AnimOnScroll.js" />
+    <Content Include="Content\ForGallery\classie.js" />
+    <Content Include="Content\ForGallery\component.css" />
+    <Content Include="Content\ForGallery\default.css" />
+    <Content Include="Content\ForGallery\imagesloaded.js" />
+    <Content Include="Content\ForGallery\images\1.jpg" />
+    <Content Include="Content\ForGallery\images\10.jpg" />
+    <Content Include="Content\ForGallery\images\11.jpg" />
+    <Content Include="Content\ForGallery\images\12.jpg" />
+    <Content Include="Content\ForGallery\images\13.jpg" />
+    <Content Include="Content\ForGallery\images\14.jpg" />
+    <Content Include="Content\ForGallery\images\15.jpg" />
+    <Content Include="Content\ForGallery\images\16.jpg" />
+    <Content Include="Content\ForGallery\images\17.jpg" />
+    <Content Include="Content\ForGallery\images\18.jpg" />
+    <Content Include="Content\ForGallery\images\2.jpg" />
+    <Content Include="Content\ForGallery\images\3.jpg" />
+    <Content Include="Content\ForGallery\images\4.jpg" />
+    <Content Include="Content\ForGallery\images\5.jpg" />
+    <Content Include="Content\ForGallery\images\6.jpg" />
+    <Content Include="Content\ForGallery\images\7.jpg" />
+    <Content Include="Content\ForGallery\images\8.jpg" />
+    <Content Include="Content\ForGallery\images\9.jpg" />
+    <Content Include="Content\ForGallery\images\Starry-Night-III.jpg" />
+    <Content Include="Content\ForGallery\masonry.pkgd.min.js" />
+    <Content Include="Content\ForGallery\modernizr.custom.js" />
     <Content Include="Content\img\gallery\1.jpg" />
     <Content Include="Content\img\gallery\10.jpg" />
     <Content Include="Content\img\gallery\11.jpg" />
@@ -288,6 +314,7 @@
     <Content Include="Views\RoleAdmin\Edit.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
+    <Content Include="Views\Home\ForGallery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
