@@ -18,7 +18,7 @@ namespace MasterpieceStore.WebUI.Controllers
 
     public class AccountController : Controller
     {
-      
+
         IAuthProvider authProvider;
         public AccountController(IAuthProvider auth)
         {
@@ -27,6 +27,7 @@ namespace MasterpieceStore.WebUI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+
         public ViewResult Login(string returnUrl)
         {
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -45,6 +46,7 @@ namespace MasterpieceStore.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
             if (ModelState.IsValid)
             {
                 AppUser user = await UserManager.FindAsync(model.UserName, model.Password);
@@ -61,7 +63,15 @@ namespace MasterpieceStore.WebUI.Controllers
                     {
                         IsPersistent = false
                     }, ident);
-                    return Redirect(returnUrl);
+                    if (returnUrl == null)
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return Redirect("/Home/Index");
+                    }
+
                 }
             }
             return View(model);
@@ -101,7 +111,7 @@ namespace MasterpieceStore.WebUI.Controllers
             return View(model);
         }
 
-    private void AddErrorsFromResult(IdentityResult result)
+        private void AddErrorsFromResult(IdentityResult result)
         {
             foreach (string error in result.Errors)
             {

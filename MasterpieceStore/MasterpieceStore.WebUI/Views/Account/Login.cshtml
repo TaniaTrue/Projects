@@ -8,7 +8,7 @@
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken();
+    @Html.AntiForgeryToken()
     <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
     <div class="form-group">
         <label>Name</label>
@@ -20,5 +20,5 @@
     </div>
     <button class="btn btn-primary" type="submit">Log In</button>
   
-      <a> @Html.ActionLink("Register", "Register", "Account") REGISTER </a>
+      <a> @Html.ActionLink("Register", "Register", "Account")</a>
 }
