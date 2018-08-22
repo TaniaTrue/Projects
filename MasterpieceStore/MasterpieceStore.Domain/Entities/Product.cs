@@ -21,9 +21,9 @@ namespace MasterpieceStore.Domain.Entities
         public string Description { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Please enter a positive price")]
-        [DataType(DataType.Currency)]
-        public decimal? MinPrice { get; set; }
+        // [Range(typeof(Decimal), "0.0", "1000000000000000000", ErrorMessage = "Please enter a positive price")]
+
+        public decimal? MinPrice { get; set; } = (decimal)10.0;
         public short? Created { get; set; }
 
         public byte[] ImageData { get; set; }
